@@ -48,13 +48,15 @@ class LL {
             return;
         }
 
-        Node temp = head;
+        Node prevNode = head;
+        // Have to find the ref of the previous node
+        // i is not start from zero because temp it self start from zero so i start from 1...
         for (int i = 1; i < index; i++) {
-            temp = temp.next;
+            prevNode = prevNode.next;
         }
 
-        Node node = new Node(val, temp.next);
-        temp.next = node;
+        Node node = new Node(val, prevNode.next);
+        prevNode.next = node;
 
         size++;
     }
