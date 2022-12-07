@@ -36,8 +36,7 @@ class LL {
         size++;
     }
 
-
-
+    //Insert At Certain Index
     public void insertIndexAt(int val, int index) {
         if (index == 0) {
             insertFirst(val);
@@ -59,6 +58,55 @@ class LL {
         prevNode.next = node;
 
         size++;
+    }
+
+    //Delete First LL
+    public int deleteFirst() {
+        int val = head.value;
+        head = head.next;
+        if (head == null) {
+            tail = null;
+        }
+        size--;
+        return val;
+    }
+
+    public int deleteLast() {
+        if (size <= 1) {
+            return deleteFirst();
+        }
+        Node secondLast = getNode(size - 2);
+        int val = tail.value;
+        tail = secondLast;
+        tail.next = null;
+        return val;
+    }
+
+    // Delete any index
+    public int deleteAtIndex(int index) {
+        if (index == 0) {
+            return deleteFirst();
+        }
+        if (index == size - 1) {
+            return deleteLast();
+        }
+
+        Node prev = getNode(index - 1);
+        int val = prev.next.value;
+        prev.next = prev.next.next;
+        return val;
+
+    }
+
+
+    //Get the Node ref
+    private Node getNode(int index) {
+        Node node = head;
+
+        for (int i = 0; i < index; i++) {
+            node = node.next;
+        }
+        return node;
     }
 
 
