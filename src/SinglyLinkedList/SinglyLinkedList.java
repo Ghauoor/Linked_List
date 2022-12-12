@@ -24,7 +24,7 @@ public class SinglyLinkedList {
         if (head == null) {
             createSinglyLinkedList(nodeValue);
             return;
-        } else if (location == 0) { // Inserting at begning of SLL
+        } else if (location == 0) { // Inserting at beaning of SLL
             node.next = head;
             head = node;
         } else if (location >= size) { // inserting at end of SLL
@@ -118,8 +118,6 @@ public class SinglyLinkedList {
         head = null;
         tail = null;
         System.out.println("The SLL deleted successfully");
-
     }
-
 }
 
