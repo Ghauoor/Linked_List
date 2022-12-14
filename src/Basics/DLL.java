@@ -64,8 +64,6 @@ public class DLL {
 
     //insert At index
     public void insertAtIndex(int index, int val) {
-        Node node = new Node(val);
-
         if (index == 0) {
             insertFirst(val);
             return;
@@ -74,18 +72,45 @@ public class DLL {
             insertLast(val);
             return;
         }
-
         Node tempNode = head;
-
         for (int i = 0; i < index; i++) {
             tempNode = tempNode.next;
         }
-
-        Node reqNode = new Node(val, tempNode.next, tempNode.prev);
+        Node reqNode = new Node(val);
         tempNode.next = reqNode;
-        tempNode.prev = reqNode;
         size++;
     }
+
+    //Insert Node after Particular Node
+    public void insertAfterVal(int after, int val) {
+        Node p = find(after);
+
+        if (p == null) {
+            System.out.println("Node does not exist");
+            return;
+        }
+
+        Node node = new Node(val);
+        node.next = p.next;
+        p.next = node;
+        node.prev = p;
+        if (node.next != null) {
+            node.next.prev = node;
+        }
+    }
+
+    //Find Node
+    public Node find(int value) {
+        Node node = head;
+        while (node != null) {
+            if (node.val == value) {
+                return node;
+            }
+            node = node.next;
+        }
+        return null;
+    }
+
 
     private class Node {
         private int val;
@@ -101,7 +126,5 @@ public class DLL {
             this.next = next;
             this.prev = prev;
         }
-
-
     }
 }
