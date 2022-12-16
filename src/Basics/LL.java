@@ -13,7 +13,6 @@ class LL {
     //Head Insertion
     public void insertFirst(int val) {
         Node node = new Node(val);
-
         node.next = head;
         head = node;
 
@@ -79,6 +78,7 @@ class LL {
         int val = tail.value;
         tail = secondLast;
         tail.next = null;
+        size--;
         return val;
     }
 
@@ -94,18 +94,53 @@ class LL {
         Node prev = getNode(index - 1);
         int val = prev.next.value;
         prev.next = prev.next.next;
+        size--;
         return val;
+    }
 
+    //Find Any Node
+    public boolean findNode(int value) {
+
+        if (head != null) {
+            Node tempNode = head;
+
+            for (int i = 0; i < size; i++) {
+                if (tempNode.value == value) {
+                    System.out.println("Found At Location: " + i);
+                    return true;
+                }
+                tempNode = tempNode.next;
+            }
+        }
+        System.out.println("Value is Not Found!  ");
+        return false;
     }
 
 
-    //Get the Node ref
+    //Get the DoublyNode ref
     private Node getNode(int index) {
         Node node = head;
 
         for (int i = 0; i < index; i++) {
             node = node.next;
         }
+        return node;
+    }
+
+    //insertion using recursion
+    public void insertRec(int val, int index) {
+        head = insertRec(val, index, head);
+
+    }
+    private Node insertRec(int val, int index, Node node) {
+        if (index == 0) {
+            Node temp = new Node(val, node);
+            size++;
+
+            return temp;
+        }
+
+        node.next = insertRec(val, index--, node.next);
         return node;
     }
 
