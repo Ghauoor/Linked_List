@@ -154,6 +154,44 @@ class LL {
         System.out.println("END...");
     }
 
+    //Questions
+
+    public void removeDuplicates() {
+        Node node = head;
+
+        while (node.next != null) {
+            if (node.value == node.next.value) {
+                node.next = node.next.next;
+            } else {
+                node = node.next;
+            }
+        }
+
+        tail = node;
+        tail.next = null;
+
+
+
+    }
+
+    public static void main(String[] args) {
+
+        LL l = new LL();
+        l.insertFirst(2);
+        l.insertFirst(2);
+        l.insertFirst(1);
+        l.insertFirst(1);
+        l.insertFirst(2);
+        l.insertFirst(3);
+        l.insertFirst(4);
+
+        l.removeDuplicates();
+
+        l.display();
+
+    }
+
+
     private class Node {
         private int value;
         private Node next;
