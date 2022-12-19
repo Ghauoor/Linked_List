@@ -22,4 +22,42 @@ public class Merge_Two_Sorted_LL {
 
 
     }
+
+    /**
+     * This is Correct ans just comment it!
+
+     Node sortedMerge(Node head1, Node head2) {
+
+     Node ansHead = new Node(0);
+     Node head = ansHead;
+
+     while (head1 != null && head2 != null) {
+     if (head1.data < head2.data) {
+     head.next = head1;
+     head1 = head1.next;
+     head = head.next;
+     } else {
+     head.next = head2;
+     head2 = head2.next;
+     head = head.next;
+     }
+     }
+
+     while (head1 != null) {
+     head.next = head1;
+     head1 = head1.next;
+     head = head.next;
+     }
+
+     while (head2 != null) {
+     head.next = head2;
+     head2 = head2.next;
+     head = head.next;
+     }
+
+     return ansHead.next;
+     }
+
+     */
 }
+
