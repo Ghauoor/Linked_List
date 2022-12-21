@@ -19,4 +19,23 @@ public class Reverse_A_LinkedList {
         return prev;
 
     }
+
+    //Recursive way
+
+    private ListNode reverse(ListNode head) {
+        return reverseL(head);
+    }
+
+    private ListNode reverseL(ListNode head) {
+        if (head == null || head.next == null) return head;
+
+        ListNode smallHead = reverseL(head.next);
+
+        head.next.next = head;
+
+        head.next = null;
+
+        return smallHead;
+
+    }
 }
