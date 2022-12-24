@@ -26,4 +26,32 @@ public class Middle_LinkedList {
 
         return len;
     }
+
+    //Fast and Slow Pointer Approach
+
+    public int getMiddle(ListNode head) {
+        return middle(head);
+    }
+
+    private int middle(ListNode head) {
+        if (head == null || head.next == null)
+            return head.val;
+
+        if (head.next.next == null) return head.next.val;
+
+        ListNode fast = head.next;
+        ListNode slow = head;
+
+        while (fast != null) {
+            fast = fast.next;
+
+            if (fast != null) {
+                fast = fast.next;
+            }
+
+            slow = slow.next;
+        }
+        return slow.val;
+    }
+
 }
