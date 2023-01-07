@@ -57,4 +57,21 @@ public class Linked_List_Cycle_Two {
 
         return 0;
     }
+
+    //Without using Length Func
+    public ListNode detectCycle(ListNode head) {
+        ListNode slow = head, fast = head;
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                while (slow != head) {
+                    slow = slow.next;
+                    head = head.next;
+                }
+                return slow;
+            }
+        }
+        return null;
+    }
 }
