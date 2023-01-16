@@ -72,4 +72,44 @@ public class Add_Two_LL {
 
     }
 
+    //Without insert method
+    public ListNode addTwoNumbersAnotherApproach(ListNode first, ListNode second) {
+        ListNode answer = addTwoLL(first, second);
+
+        return answer;
+    }
+
+    private ListNode addTwoLL(ListNode first, ListNode second) {
+        ListNode ansHead = new ListNode(0);
+        ListNode ansTail = ansHead;
+
+        int carry = 0;
+
+        while (first != null || second != null || carry != 0) {
+            int valOne = first != null ? first.val : 0;
+            int valTwo = second != null ? second.val : 0;
+
+            int sum = carry + valOne + valTwo;
+
+            int dig = sum % 10;
+
+            ansTail.next = new ListNode(dig);
+
+            ansTail = ansTail.next;
+
+            carry = sum / 10;
+
+            if (first != null) {
+                first = first.next;
+            }
+
+            if (second != null) {
+                second = second.next;
+            }
+        }
+
+        return ansHead.next;
+    }
+
+
 }
