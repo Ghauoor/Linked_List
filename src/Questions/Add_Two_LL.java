@@ -111,5 +111,54 @@ public class Add_Two_LL {
         return ansHead.next;
     }
 
+    // This method able to clear GFG practice Question Test case
+
+    static ListNode reverseList(ListNode head) {
+        if (head == null || head.next == null)
+            return head;
+
+        ListNode newhead = null;
+        ListNode temp = head;
+
+        while (temp != null) {
+            head = head.next;
+            temp.next = newhead;
+            newhead = temp;
+            temp = head;
+        }
+
+        return newhead;
+    }
+
+    private ListNode addTwoLists(ListNode first, ListNode second) {
+        first = reverseList(first);
+        second = reverseList(second);
+
+        ListNode dummy = new ListNode(-1);
+        ListNode temp = dummy;
+        int carry = 0;
+
+        while (first != null || second != null || carry == 1) {
+            int sum = 0;
+
+            if (first != null) {
+                sum += first.val;
+                first = first.next;
+            }
+            if (second != null) {
+                sum += second.val;
+                second = second.next;
+            }
+            sum += carry;
+            carry = sum / 10;
+
+            ListNode newnode = new ListNode(sum % 10);
+            temp.next = newnode;
+            temp = temp.next;
+        }
+
+        return reverseList(dummy.next);
+    }
+
 
 }
