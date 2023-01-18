@@ -20,6 +20,7 @@ public class Clone_LL_With_Random_Ptrs {
 
     /**
      * This code unable to clear all the test cases of GFG
+     * But able to Clear All the Leetcode Test Cases
      */
     Node copyRandomList(Node head) {
         HashMap<Node, Node> hashMap = new HashMap<>();
@@ -45,7 +46,10 @@ public class Clone_LL_With_Random_Ptrs {
     }
 
 
-    //This code is Valid at GFG practice
+    /**
+     * This code unable to clear all the test cases of LeetCode
+     * But able to Clear All the GFG Test Cases
+     */
     private Node copyList(Node head) {
         Node newHead = null;
         Node prev = null;
