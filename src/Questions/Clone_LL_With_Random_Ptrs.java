@@ -16,33 +16,12 @@ class Node {
 }
 
 public class Clone_LL_With_Random_Ptrs {
-    public static void main(String args[]) {
-        Node head = null;
 
-        Node node1 = new Node(1);
-        Node node2 = new Node(2);
-        Node node3 = new Node(3);
-        Node node4 = new Node(4);
 
-        head = node1;
-        head.next = node2;
-        head.next.next = node3;
-        head.next.next.next = node4;
-
-        head.random = node4;
-        head.next.random = node1;
-        head.next.next.random = null;
-        head.next.next.next.random = node2;
-
-        System.out.println("Original list:(current node:node pointed by next pointer,node pointed by random pointer) ");
-        printList(head);
-
-        System.out.println("Copy list:(current node:node pointed by next pointer,node pointed by random pointer) ");
-        Node newHead = copyRandomList(head);
-        printList(newHead);
-    }
-
-    static Node copyRandomList(Node head) {
+    /**
+     * This code unable to clear all the test cases of GFG
+     */
+    Node copyRandomList(Node head) {
         HashMap<Node, Node> hashMap = new HashMap<>();
         Node temp = head;
 
@@ -65,20 +44,40 @@ public class Clone_LL_With_Random_Ptrs {
 
     }
 
-    static void printList(Node head) {
+
+    //This code is Valid at GFG practice
+    private Node copyList(Node head) {
+        Node newHead = null;
+        Node prev = null;
+        Node newNode = null;
+
+        Node temp = head;
+
+        HashMap<Node, Node> map = new HashMap<>();
+
+        while (temp != null) {
+            map.put(temp, new Node(temp.val));
+            temp = temp.next;
+        }
+
         while (head != null) {
-            System.out.print(head.val + ":");
-            if (head.next != null)
-                System.out.print(head.next.val);
-            else
-                System.out.print("NULL");
-            if (head.random != null)
-                System.out.print("," + head.random.val);
-            else
-                System.out.print(",NULL");
-            System.out.println();
+            newNode.next = map.get(head.next);
+
+            //Map the New Nodes
+            if (head.next != null) newNode.next = map.get(head.next);
+
+            if (head.random != null) newNode.random = map.get(head.random);
+
+            if (newHead == null) newHead = newNode;
+
+            else prev.next = newNode;
+
+            prev = newNode;
             head = head.next;
         }
+
+        return newHead;
+
     }
 
 
