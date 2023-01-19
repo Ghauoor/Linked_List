@@ -84,7 +84,47 @@ public class Clone_LL_With_Random_Ptrs {
 
     }
 
+    /**
+     * This is Approach which use SC - O(1) and TC - O(N)
+     */
 
+    public Node copyRandomLists(Node head) {
+        Node curr = head;
+        //Inserting New Node in between
+        while (curr != null) {
+            Node temp = curr.next;
+            curr.next = new Node(curr.val);
+            curr.next.next = temp;
+            curr = temp;
+        }
+
+        curr = head;
+
+        //Set the Random pointers of Nodes
+
+        while (curr != null) {
+            if (curr.next != null) {
+                curr.next.random = (curr.random != null) ? curr.random.next : null;
+            }
+            curr = curr.next.next;
+        }
+
+        Node orig = head;
+        Node copy = (head != null) ? head.next : null;
+        Node temp = copy;
+
+        //Seprate both of LL
+
+        while (orig != null) {
+            orig.next = orig.next.next;
+            copy.next = (copy.next != null) ? copy.next.next : copy.next;
+            orig = orig.next;
+            copy = copy.next;
+        }
+
+        return temp;
+
+    }
 }
 
 
