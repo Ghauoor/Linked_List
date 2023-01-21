@@ -59,14 +59,14 @@ public class Merge_Sort {
      */
 
     public ListNode mid(ListNode head) {
-        ListNode fast = head;
-        ListNode slow = head;
-
-        while (fast != null && fast.next != null) {
-            slow = slow.next;
-            fast = fast.next.next;
+        ListNode midPrev = null;
+        while (head != null && head.next != null) {
+            midPrev = (midPrev == null) ? head : midPrev.next;
+            head = head.next.next;
         }
-        return slow;
+        ListNode mid = midPrev.next;
+        midPrev.next = null;
+        return mid;
     }
 
     public ListNode mergeLL(ListNode left, ListNode right) {
