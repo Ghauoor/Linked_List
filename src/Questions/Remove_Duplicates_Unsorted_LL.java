@@ -1,5 +1,7 @@
 package Questions;
 
+import java.util.HashSet;
+
 /**
  * This is not the Optimal Approach
  * This is able to clear 403 test cases out of 416
@@ -28,4 +30,32 @@ public class Remove_Duplicates_Unsorted_LL {
         }
         return head;
     }
+
+    /**
+     * HashSet Approach
+     */
+
+    public ListNode removeDuplicate(ListNode head) {
+
+        HashSet<Integer> hs = new HashSet<>();
+        ListNode curr = head;
+        ListNode prev = null;
+
+        while (curr != null) {
+            int value = curr.val;
+
+            if (hs.contains(value)) {
+                prev.next = curr.next;
+            } else {
+                hs.add(value);
+                prev = curr;
+            }
+
+            curr = curr.next;
+        }
+
+        return head;
+
+    }
+
 }
