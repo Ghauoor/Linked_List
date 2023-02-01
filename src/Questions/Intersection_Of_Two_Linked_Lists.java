@@ -47,4 +47,16 @@ public class Intersection_Of_Two_Linked_Lists {
         //Can return any one of pointer
         return tempA;
     }
+
+    //Another approach
+    public ListNode getIntersectionPoint(ListNode headA, ListNode headB) {
+        ListNode tempA = headA;
+        ListNode tempB = headB;
+
+        while (tempA != tempB) {
+            tempA = tempA != null ? tempA.next : headB;
+            tempB = tempB != null ? tempB.next : headA;
+        }
+        return tempA;
+    }
 }
