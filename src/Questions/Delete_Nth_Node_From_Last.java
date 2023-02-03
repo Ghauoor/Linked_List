@@ -25,4 +25,25 @@ public class Delete_Nth_Node_From_Last {
         prev.next = prev.next.next;
         return head;
     }
+
+    public ListNode removesNthFromEnd(ListNode head, int n) {
+        ListNode fast = head;
+        ListNode slow = head;
+
+        for (int i = 0; i < n; i++) {
+            fast = fast.next;
+        }
+
+        if (fast == null) {
+            return head.next;
+        }
+
+        while (fast.next != null) {
+            fast = fast.next;
+            slow = slow.next;
+        }
+
+        slow.next = slow.next.next;
+        return head;
+    }
 }
