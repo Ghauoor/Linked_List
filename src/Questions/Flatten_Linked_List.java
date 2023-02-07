@@ -1,6 +1,6 @@
 package Questions;
 
-
+//https://practice.geeksforgeeks.org/problems/flattening-a-linked-list/1
 public class Flatten_Linked_List {
     private Node flatten(Node root) {
         if (root == null || root.next == null)
