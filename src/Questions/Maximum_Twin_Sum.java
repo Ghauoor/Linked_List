@@ -24,4 +24,43 @@ public class Maximum_Twin_Sum {
         }
         return res;
     }
+
+    private ListNode findMid(ListNode head) {
+        ListNode slow = head;
+        ListNode fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    private ListNode reverse(ListNode head) {
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+            ListNode next = curr.next;
+            curr.next = prev;
+            prev = curr;
+            curr = next;
+        }
+        return prev;
+    }
+
+    public int pairsSum(ListNode head) {
+        ListNode mid = findMid(head);
+        ListNode prev = reverse(mid);
+        ListNode curr = head;
+
+        int result = 0;
+
+        while (prev != null) {
+            result = Math.max(result, curr.val + prev.val);
+            curr = curr.next;
+            prev = prev.next;
+        }
+        return result;
+    }
 }
